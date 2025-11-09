@@ -66,8 +66,8 @@ This project:
 ### How to Run
 
 #### GUI app (macOS only):
-1. Download the `.zip` archive: [`MIDISync.app.zip`](MIDISync.app.zip).
-2. Extract the archive and move the `.app` to your Applications folder (optional but recommended).
+1. Download the `.zip` archive: [`MIDISync.zip`](MIDISync.zip).
+2. Extract the archive and move the app to your Applications folder (optional but recommended).
 3. Run the app.
 
 > [!NOTE]
