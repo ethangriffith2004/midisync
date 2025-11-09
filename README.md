@@ -32,7 +32,7 @@ In this project, I created a tool that takes a MIDI file and a video clip, then 
 In addition, the MacOS app provides a user-friendly dialog interface for file selection (though the Python script can be executed on any system).
 
 ## Technologies Used
-- Python 3.14 (Core script logic)
+- Python 3.x (Core script logic)
 - mido (MIDI file parsing)
 - moviepy (Video processing and manipulation)
 - numpy (Array operations for video transformations)
@@ -71,7 +71,7 @@ This project:
 3. Run the app.
 
 > [!NOTE]
-> The app has the Python script embedded, so you do not need to install Python separately. However, you must have Python 3.14 installed at `~/Library/Frameworks/Python.framework/Versions/3.14/bin/python3` with `mido` and `moviepy` packages.
+> You will need Python 3.7+ with `mido` and `moviepy` installed. The app will use your system's Python installation. If you encounter errors, verify Python is installed by running `which python3` in Terminal.
 
 #### Command-line interface (any OS):
 1. Clone this repository or download the Python file directly: [`midisync_nogui.py`](midisync_nogui.py).
@@ -84,7 +84,7 @@ pip install mido moviepy numpy
 3. Run the script:
 
 ```bash
-python3 midisync.py <midi_file> <video_clip> <output_file> [fps] [chord_threshold]
+python3 midisync_nogui.py <midi_file> <video_clip> <output_file> [fps] [chord_threshold]
 ```
 
 Parameters:
@@ -107,10 +107,10 @@ Run the app and follow the dialogs to:
 #### Command line
 ```bash
 # basic usage
-python3 /path/to/midisync.py /path/to/input.mid /path/to/video.mp4 /path/to/output.mp4
+python3 /path/to/midisync_nogui.py /path/to/input.mid /path/to/video.mp4 /path/to/output.mp4
 
 # with custom FPS and chord threshold
-python3 /path/to/midisync.py /path/to/input.mid /path/to/video.mp4 /path/to/output.mp4 60 0.05
+python3 /path/to/midisync_nogui.py /path/to/input.mid /path/to/video.mp4 /path/to/output.mp4 60 0.05
 ```
 
 ## Contributing
