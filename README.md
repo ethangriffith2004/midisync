@@ -84,7 +84,7 @@ pip install mido moviepy numpy
 3. Run the script:
 
 ```bash
-python3 midisync.py <midi_file> <video_clip> <output_file> <fps> <chord_threshold>
+python3 midisync.py <midi_file> <video_clip> <output_file> [fps] [chord_threshold]
 ```
 
 Parameters:
