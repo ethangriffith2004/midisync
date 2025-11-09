@@ -74,7 +74,7 @@ This project:
 > The app has the Python script embedded, so you do not need to install Python separately. However, you must have Python 3.14 installed at `~/Library/Frameworks/Python.framework/Versions/3.14/bin/python3` with `mido` and `moviepy` packages.
 
 #### Command-line interface (any OS):
-1. Clone this repository or download the Python file directly: [`midisync.py`](midisync.py).
+1. Clone this repository or download the Python file directly: [`midisync_nogui.py`](midisync_nogui.py).
 5. Install the required packages:
 
 ```bash
