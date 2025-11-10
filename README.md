@@ -84,15 +84,13 @@ pip install mido moviepy numpy
 3. Run the script:
 
 ```bash
-python3 midisync_nogui.py <midi_file> <video_clip> <output_file> [fps] [chord_threshold]
+python3 midisync_nogui.py <midi_file> <video_clip> <output_file>
 ```
 
 Parameters:
 - midi_file: Path to your MIDI file (.mid)
 - video_clip: Path to your source video clip (.mp4, .mov, etc.)
-- output_file: Path for the output video
-- fps (optional): Frame rate for output video (default: 30)
-- chord_threshold (optional): Time window in seconds to group notes as chords (default: 0.1)
+- output_file: Path for the output video (.mp4)
 
 ### Usage
 
@@ -106,11 +104,7 @@ Run the app and follow the dialogs to:
 
 #### Command line
 ```bash
-# basic usage
 python3 /path/to/midisync_nogui.py /path/to/input.mid /path/to/video.mp4 /path/to/output.mp4
-
-# with custom FPS and chord threshold
-python3 /path/to/midisync_nogui.py /path/to/input.mid /path/to/video.mp4 /path/to/output.mp4 60 0.05
 ```
 
 ## Contributing
