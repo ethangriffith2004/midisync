@@ -15,7 +15,7 @@ A Python and AppleScript utility that synchronizes a video clip to MIDI note tim
 
 ## Background
 
-Growing up, I enjoyed watching [YouTube Poops](https://en.wikipedia.org/wiki/YouTube_poop) (YTPs). I eventually discovered YouTube Poop Music Videos (YTPMVs), a subgenre where clips sampled from other media are used to create a song (often a cover). I enjoyed making these myself from time to time, but one thing that was holding me back was the video editing process. I found manually syncing video clips to notes frame-by-frame to be extremely time-consuming.
+My love of watching [YouTube Poop](https://en.wikipedia.org/wiki/YouTube_poop) (YTP) edits of my favorite TV shows growing up naturally led to my discovery of YouTube Poop Music Videos (YTPMVs), a subgenre where clips sampled from other media are used to create a song (often a cover). I now enjoy making these myself from time to time, but one thing that had been holding me back was the video editing process. I found manually syncing video clips to notes frame-by-frame to be extremely time-consuming.
 
 For me, the typical workflow involved:
 1. Creating a MIDI composition in a digital audio workstation (e.g. Logic Pro), and exporting the audio
@@ -23,7 +23,7 @@ For me, the typical workflow involved:
 3. Adjusting clip length for each note
 4. Adding visual effects and keying
 
-I wanted to automate what I found to be the most tedious parts, which were the initial sync of video clips to note timings and the clip length adjustments.
+I wanted to automate what I found to be the most tedious parts, which were the initial sync of video clips to note timings, and the clip length adjustments.
 
 ## Project Overview
 
