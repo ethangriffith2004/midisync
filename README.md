@@ -71,7 +71,7 @@ This project:
 3. Run the app.
 
 > [!NOTE]
-> You will need Python 3.7+ with `mido` and `moviepy` installed. The app will use your system's Python installation. If you encounter errors, verify Python is installed by running `which python3` in Terminal.
+> The app will use your system's Python installation. If you encounter errors, verify Python is installed by running `which python3` in Terminal.
 
 #### Command-line interface (any OS):
 1. Clone this repository or download the Python file directly: [`midisync_nogui.py`](midisync_nogui.py).
