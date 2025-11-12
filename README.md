@@ -29,7 +29,7 @@ I wanted to automate what I found to be the most tedious parts, which were the i
 
 In this project, I created a tool that takes a MIDI file and a video clip, then produces a video with the clip synchronized to each note in the MIDI file. Silences between notes are filled with chroma key green for easy removal, and for even-numbered notes, the clip is horizontally flipped for more visual interest. Short clips are also cut or looped to fit exactly to the note length.
 
-The Python script can be executed on any system, but the MacOS app provides a user-friendly dialog interface for file selection.
+The Python script can be executed on any system, but the macOS app provides a user-friendly dialog interface for file selection.
 
 ## Technologies Used
 - Python 3.x (Core script logic)
