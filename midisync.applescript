@@ -11,8 +11,8 @@ set pythonInterpreter to "/Library/Frameworks/Python.framework/Versions/3.14/bin
 -- python script embedded as text
 set pythonCode to "import sys
 import mido
+import numpy
 from moviepy.editor import VideoFileClip, concatenate_videoclips, ColorClip
-import numpy as np
 
 def extractNotes(filePath, chordThreshold=0.1):
     mid = mido.MidiFile(filePath)
@@ -89,7 +89,7 @@ def createVideo(midiPath, videoClipPath, outputPath):
             noteClip = sourceClip.subclip(0, duration)
         
         if noteNum % 2 == 0:
-            noteClip = noteClip.fx(lambda clip: clip.fl_image(lambda img: np.fliplr(img)))
+            noteClip = noteClip.fx(lambda clip: clip.fl_image(lambda img: numpy.fliplr(img)))
         
         videoClips.append(noteClip)
         currentPos = endTime
