@@ -52,8 +52,8 @@ This project:
 
 ## Improvements & Extensions
 - Add audio export option to include the MIDI playback.
-- Create a GUI for Windows or Linux users.
-- Real-time preview functionality.
+- Add support for images as well as videos.
+- Create a GUI app for Windows or Linux users.
 - Options presented all at once instead of in sequential dialog boxes.
 
 ## Download & Setup
@@ -84,13 +84,13 @@ pip install mido moviepy numpy
 3. Run the script:
 
 ```bash
-python3 midisync.py <midi_file> <video_clip> <output_file>
+python3 midisync.py <midi_file> <video_clip> <output_video>
 ```
 
 Parameters:
 - midi_file: Path to your MIDI file (.mid)
 - video_clip: Path to your source video clip (.mp4, .mov, etc.)
-- output_file: Path for the output video (.mp4)
+- output_video: Path for the completed output video (.mp4, .mov, etc.)
 
 ### Usage
 
