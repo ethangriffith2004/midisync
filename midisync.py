@@ -14,8 +14,8 @@ takes in a MIDI file and a video clip, and creates a video with the clip synced 
 
 import sys
 import mido
-from moviepy.editor import VideoFileClip, concatenate_videoclips, ColorClip
 import numpy
+from moviepy.editor import VideoFileClip, concatenate_videoclips, ColorClip
 
 def extractNotes(filePath, chordThreshold=0.1) :
     '''
