@@ -44,8 +44,8 @@ def extractNotes(filePath, chordThreshold=0.1):
     
     return groupedEvents
 
-def createVideo(midiPath, videoClipPath, outputPath, chordThreshold=0.1, fps=30):
-    noteEvents = extractNotes(midiPath, chordThreshold)
+def createVideo(midiPath, videoClipPath, outputPath):
+    noteEvents = extractNotes(midiPath, chordThreshold=0.1)
     if not noteEvents:
         return
     
@@ -65,9 +65,26 @@ def createVideo(midiPath, videoClipPath, outputPath, chordThreshold=0.1, fps=30)
             videoClips.append(greenClip)
         
         if sourceClip.duration < duration:
-            numLoops = int(np.ceil(duration / sourceClip.duration))
-            loopedClip = concatenate_videoclips([sourceClip] * numLoops)
-            noteClip = loopedClip.subclip(0, duration)
+            clips = []
+            remainingDuration = duration
+            forward = True
+            
+            while remainingDuration > 0:
+                if forward:
+                    clipToAdd = sourceClip
+                else:
+                    clipToAdd = sourceClip.fl_time(lambda t: sourceClip.duration - t, apply_to=['video', 'audio'])
+                
+                if remainingDuration >= sourceClip.duration:
+                    clips.append(clipToAdd)
+                    remainingDuration -= sourceClip.duration
+                else:
+                    clips.append(clipToAdd.subclip(0, remainingDuration))
+                    remainingDuration = 0
+                
+                forward = not forward
+            
+            noteClip = concatenate_videoclips(clips)
         else:
             noteClip = sourceClip.subclip(0, duration)
         
@@ -78,20 +95,18 @@ def createVideo(midiPath, videoClipPath, outputPath, chordThreshold=0.1, fps=30)
         currentPos = endTime
     
     finalVideo = concatenate_videoclips(videoClips, method='compose')
-    finalVideo.write_videofile(outputPath, fps=fps, codec='libx264', audio=False)
+    finalVideo.write_videofile(outputPath, fps=30, codec='libx264', audio=False)
     sourceClip.close()
     finalVideo.close()
 
 if __name__ == '__main__':
-    if len(sys.argv) >= 4:
+    if len(sys.argv) == 4:
         midiFile = sys.argv[1]
         videoClip = sys.argv[2]
         outputVideo = sys.argv[3]
-        fps = int(sys.argv[4]) if len(sys.argv) > 4 else 30
-        chordThreshold = float(sys.argv[5]) if len(sys.argv) > 5 else 0.1
     else:
         sys.exit(1)
-    createVideo(midiFile, videoClip, outputVideo, chordThreshold, fps)
+    createVideo(midiFile, videoClip, outputVideo)
 "
 
 try
@@ -107,15 +122,8 @@ try
 	set outputFile to choose file name with prompt "Save output video as:" default name "output.mp4"
 	set outputPath to POSIX path of outputFile
 	
-	-- ssk for frame rate
-	set fpsDialog to display dialog "Enter frame rate (FPS):" default answer "30" buttons {"Cancel", "OK"} default button 2
-	set fps to text returned of fpsDialog
-	
-	-- ssk for chord threshold
-	set thresholdDialog to display dialog "Enter chord threshold (sec):" default answer "0.1" buttons {"Cancel", "OK"} default button 2
-	set threshold to text returned of thresholdDialog
-	
-	display notification "Processing video..." with title "MIDI Video Generator"
+	set msgString to "Processing video..." & return & "You will be notified when it is completed."
+	display notification msgString with title "MIDISync"
 	
 	-- create temporary python script file
 	set tempScript to (POSIX path of (path to temporary items)) & "midisync_temp.py"
@@ -126,7 +134,7 @@ try
 ENDOFPYTHON"
 	
 	-- build and execute python command
-	set pythonCommand to pythonInterpreter & " " & quoted form of tempScript & " " & quoted form of midiPath & " " & quoted form of videoPath & " " & quoted form of outputPath & " " & fps & " " & threshold
+	set pythonCommand to pythonInterpreter & " " & quoted form of tempScript & " " & quoted form of midiPath & " " & quoted form of videoPath & " " & quoted form of outputPath
 	
 	-- run the script
 	set scriptOutput to do shell script pythonCommand
@@ -135,7 +143,7 @@ ENDOFPYTHON"
 	do shell script "rm " & quoted form of tempScript
 	
 	-- show completion message
-	display dialog "Video created successfully!" & return & return & "Output: " & outputPath buttons {"OK"} default button 1 with icon note
+	display dialog "Video created successfully!" & return & return & "Output: " & outputPath buttons {"OK"} default button 1 with icon note with title "MIDISync"
 	
 	-- reveal in finder, delay to ensure file is registered
 	delay 0.5
