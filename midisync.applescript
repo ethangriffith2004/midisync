@@ -70,18 +70,18 @@ def createVideo(midiPath, videoClipPath, outputPath):
             forward = True
             
             while remainingDuration > 0:
+                clipDuration = min(remainingDuration, sourceClip.duration)
+                
                 if forward:
-                    clipToAdd = sourceClip
+                    clipToAdd = sourceClip.subclip(0, clipDuration)
                 else:
-                    clipToAdd = sourceClip.fl_time(lambda t: sourceClip.duration - t, apply_to=['video', 'audio'])
+                    # Create reversed clip by reversing frame indices
+                    clipToAdd = sourceClip.subclip(0, clipDuration).fx(
+                        lambda clip: clip.fl_time(lambda t: clipDuration - t - 1.0/clip.fps, apply_to=['video', 'audio'])
+                    ).set_duration(clipDuration)
                 
-                if remainingDuration >= sourceClip.duration:
-                    clips.append(clipToAdd)
-                    remainingDuration -= sourceClip.duration
-                else:
-                    clips.append(clipToAdd.subclip(0, remainingDuration))
-                    remainingDuration = 0
-                
+                clips.append(clipToAdd)
+                remainingDuration -= clipDuration
                 forward = not forward
             
             noteClip = concatenate_videoclips(clips)
@@ -126,7 +126,7 @@ try
 	display notification msgString with title "MIDISync"
 	
 	-- create temporary python script file
-	set tempScript to (POSIX path of (path to temporary items)) & "midisync_temp.py"
+	set tempScript to (do shell script "echo $HOME") & "/.midisync_temp.py"
 	
 	-- write python code to file using cat with heredoc to avoid quote issues
 	do shell script "cat > " & quoted form of tempScript & " << 'ENDOFPYTHON'
