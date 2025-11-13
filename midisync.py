@@ -15,7 +15,7 @@ takes in a MIDI file and a video clip, and creates a video with the clip synced 
 import sys
 import mido
 from moviepy.editor import VideoFileClip, concatenate_videoclips, ColorClip
-import numpy as np
+import numpy
 
 def extractNotes(filePath, chordThreshold=0.1) :
     '''
@@ -159,7 +159,7 @@ def createVideo(midiPath, videoClipPath, outputPath) :
         
         # flip horizontally for even-numbered notes
         if noteNum % 2 == 0 :
-            noteClip = noteClip.fx(lambda clip : clip.fl_image(lambda img : np.fliplr(img)))
+            noteClip = noteClip.fx(lambda clip : clip.fl_image(lambda img : numpy.fliplr(img)))
         
         videoClips.append(noteClip)
         currentPos = endTime
