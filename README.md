@@ -74,7 +74,7 @@ This project:
 > The app will use your system's Python installation. If you encounter errors, verify Python is installed by running `which python3` in Terminal.
 
 #### Command-line interface (any OS):
-1. Clone this repository or download the Python file directly: [`midisync_nogui.py`](midisync_nogui.py).
+1. Clone this repository or download the Python file directly: [`midisync.py`](midisync.py).
 5. Install the required packages:
 
 ```bash
@@ -84,7 +84,7 @@ pip install mido moviepy numpy
 3. Run the script:
 
 ```bash
-python3 midisync_nogui.py <midi_file> <video_clip> <output_file>
+python3 midisync.py <midi_file> <video_clip> <output_file>
 ```
 
 Parameters:
@@ -99,12 +99,10 @@ Run the app and follow the dialogs to:
 - Select your MIDI file
 - Select your video clip
 - Choose where to save the output
-- Set frame rate (default: 30)
-- Set chord threshold (default: 0.1 seconds)
 
 #### Command line
 ```bash
-python3 /path/to/midisync_nogui.py /path/to/input.mid /path/to/video.mp4 /path/to/output.mp4
+python3 /path/to/midisync.py /path/to/input.mid /path/to/video.mp4 /path/to/output.mp4
 ```
 
 ## Contributing
