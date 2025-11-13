@@ -191,7 +191,7 @@ if __name__ == "__main__" :
         output_video = sys.argv[3]
     else :
         print()
-        print("Usage: python3 midisync.py <midi_file> <video_clip> <output_file>")
+        print("Usage: python3 midisync.py <midi_file> <video_clip> <output_video>")
         print("\nExample:")
         print("  python3 midisync.py input.mid video.mp4 output.mp4")
         print()
