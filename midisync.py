@@ -14,7 +14,7 @@ takes in a MIDI file and a video clip, and creates a video with the clip synced 
 
 import sys
 import mido
-import numpy
+import numpy as np
 from moviepy.editor import VideoFileClip, concatenate_videoclips, ColorClip
 
 def extractNotes(filePath, chordThreshold=0.1) :
@@ -139,18 +139,18 @@ def createVideo(midiPath, videoClipPath, outputPath) :
             forward = True
             
             while remainingDuration > 0 :
+                clipDuration = min(remainingDuration, sourceClip.duration)
+                
                 if forward :
-                    clipToAdd = sourceClip
+                    clipToAdd = sourceClip.subclip(0, clipDuration)
                 else :
-                    clipToAdd = sourceClip.fl_time(lambda t: sourceClip.duration - t, apply_to=['video', 'audio'])
+                    # Create reversed clip by reversing frame indices
+                    clipToAdd = sourceClip.subclip(0, clipDuration).fx(
+                        lambda clip: clip.fl_time(lambda t: clipDuration - t - 1.0/clip.fps, apply_to=['video', 'audio'])
+                    ).set_duration(clipDuration)
                 
-                if remainingDuration >= sourceClip.duration :
-                    clips.append(clipToAdd)
-                    remainingDuration -= sourceClip.duration
-                else :
-                    clips.append(clipToAdd.subclip(0, remainingDuration))
-                    remainingDuration = 0
-                
+                clips.append(clipToAdd)
+                remainingDuration -= clipDuration
                 forward = not forward
             
             noteClip = concatenate_videoclips(clips)
@@ -159,7 +159,7 @@ def createVideo(midiPath, videoClipPath, outputPath) :
         
         # flip horizontally for even-numbered notes
         if noteNum % 2 == 0 :
-            noteClip = noteClip.fx(lambda clip : clip.fl_image(lambda img : numpy.fliplr(img)))
+            noteClip = noteClip.fx(lambda clip : clip.fl_image(lambda img : np.fliplr(img)))
         
         videoClips.append(noteClip)
         currentPos = endTime
