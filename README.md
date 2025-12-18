@@ -10,6 +10,7 @@ A Python utility that synchronizes a video clip to MIDI note timings. Personal p
 - [Takeaways](#takeaways)
 - [Improvements & Extensions](#improvements--extensions)
 - [Download & Setup](#download--setup)
+- [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -94,7 +95,7 @@ Parameters:
 
 ### Usage
 
-#### GUI App
+#### GUI app
 Run the app and follow the dialogs to:
 - Select your MIDI file
 - Select your video clip
@@ -104,6 +105,12 @@ Run the app and follow the dialogs to:
 ```bash
 python3 /path/to/midisync.py /path/to/input.mid /path/to/video.mp4 /path/to/output.mp4
 ```
+
+## Troubleshooting
+
+### Missing or skipped notes
+If certain notes do not appear in the output video, the issue is likely corrupted data in the MIDI file. Some notes may have zero-duration timestamps even though they display and play normally in your DAW.
+** Solution:** Open the MIDI file in your DAW (e.g., Logic Pro), locate the problematic notes, delete them, and re-enter them manually. Adding slight spacing between notes can also help prevent timing conflicts.
 
 ## Contributing
 
