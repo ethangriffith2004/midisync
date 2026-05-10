@@ -69,11 +69,7 @@ def extractNotes(filePath, chordThreshold=0.1) :
         if lastStartTime is None or (event['start'] - lastStartTime) > chordThreshold :
             noteNum += 1
             lastStartTime = event['start']
-            groupedEvents.append({
-                'noteNum' : noteNum,
-                'start' : event['start'],
-                'end' : event['end']
-            })
+            groupedEvents.append({'noteNum' : noteNum, 'start' : event['start'], 'end' : event['end']})
     
     print()
     print(f"MIDI file path: {filePath}")
@@ -121,7 +117,8 @@ def createVideo(midiPath, videoClipPath, outputPath) :
         if startTime > currentPos :
             gapDuration = startTime - currentPos
             
-            # Create a green screen clip (chroma key green: RGB 0, 255, 0)
+            # create a green screen clip
+            # chroma key green RGB 0, 255, 0
             greenClip = ColorClip(
                 size=(sourceClip.w, sourceClip.h),
                 color=(0, 255, 0),
@@ -130,8 +127,8 @@ def createVideo(midiPath, videoClipPath, outputPath) :
             videoClips.append(greenClip)
         
         # create clip for this note
-        # if clip is too short, bounce it (forward then backward)
-        # if too long, trim it
+        # if clip is too short, bounce (forward then backward)
+        # if too long, trim
         if sourceClip.duration < duration :
             # create bouncing effect by alternating forward and reversed clips
             clips = []
@@ -144,7 +141,7 @@ def createVideo(midiPath, videoClipPath, outputPath) :
                 if forward :
                     clipToAdd = sourceClip.subclip(0, clipDuration)
                 else :
-                    # Create reversed clip by reversing frame indices
+                    # create reversed clip by reversing frame indices
                     clipToAdd = sourceClip.subclip(0, clipDuration).fx(
                         lambda clip: clip.fl_time(lambda t: clipDuration - t - 1.0/clip.fps, apply_to=['video', 'audio'])
                     ).set_duration(clipDuration)
