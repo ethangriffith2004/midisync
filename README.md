@@ -16,7 +16,7 @@ A Python utility that synchronizes a video clip to MIDI note timings. Personal p
 
 ## Background
 
-My early interest in [YouTube Poop](https://en.wikipedia.org/wiki/YouTube_poop) (YTP) edits, which are remix-style videos created from existing television and online media, led me to discover YouTube Poop Music Videos (YTPMVs). YTPMVs are a related subgenre in which sampled video clips are sequenced and synchronized to create a song, often a cover of an existing piece. I now enjoy making these myself from time to time, but one thing that had been holding me back was the video editing process. I found manually syncing video clips to notes to be extremely time-consuming and error-prone.
+I have always had an interest in YTPMV and otoMAD videos, which are a genre of online content where sampled video clips are sequenced and synchronized to create a song, often a cover of an existing piece. I enjoy making these myself from time to time, but one thing that had been holding me back was the video editing process. I found manually syncing video clips to notes to be extremely time-consuming and error-prone.
 
 For me, the typical workflow involved:
 1. Creating a MIDI composition in a digital audio workstation (e.g. Logic Pro) and exporting the audio
