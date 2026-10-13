@@ -68,18 +68,19 @@ This project:
 
 #### GUI app (macOS only):
 1. Download the `.zip` archive: [`MIDISync.zip`](MIDISync.zip).
-2. Extract the archive and move the app to your Applications folder (optional but recommended).
-3. Run the app.
+2. Extract the archive and (optionally) move the app to your Applications folder.
+3. Run the app and follow the dialogue boxes.
 
 #### Command-line interface (any OS):
 1. Clone this repository or download the Python file directly: [`midisync.py`](midisync.py).
-5. Install the required packages:
+2. Install the required packages:
 
 ```bash
 pip install mido moviepy numpy
 ```
 
-3. Run the script:
+3. Go to the directory containing the script.
+4. Run the script:
 
 ```bash
 python3 midisync.py <midi_file> <video_clip> <output_video>
@@ -89,19 +90,6 @@ Parameters:
 - midi_file: Path to your MIDI file (.mid)
 - video_clip: Path to your source video clip (.mp4, .mov, etc.)
 - output_video: Path for the completed output video (.mp4, .mov, etc.)
-
-### Usage
-
-#### GUI app
-Run the app and follow the dialogs to:
-- Select your MIDI file
-- Select your video clip
-- Choose where to save the output
-
-#### Command line
-```bash
-python3 /path/to/midisync.py /path/to/input.mid /path/to/video.mp4 /path/to/output.mp4
-```
 
 ### Tips
 
