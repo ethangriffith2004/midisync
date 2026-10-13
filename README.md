@@ -114,9 +114,9 @@ If you want to synchronize an image to your MIDI file rather than a video clip, 
 ## Troubleshooting
 
 ### Missing or skipped notes
-If certain notes do not appear in the output video, the issue is likely corrupted data in the MIDI file. Some notes may have zero-duration timestamps even though they display and play normally in your DAW.
 
-**Solution:** Open the MIDI file in your DAW (e.g., Logic Pro), locate the problematic notes, delete them, and re-enter them manually. Adding slight spacing between notes can also help prevent timing conflicts.
+- If the output video is missing notes and appears to be severely shorter than expected, make sure that the MIDI file you are using begins at measure 1 of your project in your DAW.
+- If certain notes still do not appear in the output video, the issue may be due to corrupted data; some notes may have zero-duration timestamps even though they display and play normally in your DAW. The solution is to locate the problematic notes, delete them, and re-enter them.
 
 ## Contributing
 
